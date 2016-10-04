@@ -11,10 +11,10 @@ public class Main {
         // Pretend you're running an online store. Complete the "helper" methods below and call them here in main().
 
         // 1) Complete the setStoreName() method below and use it to save your store's name
-        setStoreName("put your store's name here, e.g. Bob's Discount Warehouse");
+        setStoreName("Scott's Shop");
 
         // 2) Complete the greetCustomer() method below
-        String greeting = greetCustomer("put a customer name here");
+        String greeting = greetCustomer("Charles");
         System.out.println(greeting);
 
 
@@ -59,6 +59,10 @@ public class Main {
     }
 
 
+    public static double rounder (double number){
+        double roundedTimes100 = Math.round(number*100);
+        return roundedTimes100/100;
+    }
     /**
      * This method should update the class variable mStoreName by assigning it the value of the name input.
      *
@@ -67,6 +71,8 @@ public class Main {
     public static void setStoreName(String name) {
         // update the value of mStoreName, then explain in a comment why you can access that variable
         // from within the scope of this method, since mStoreName is NOT local to this method.
+        mStoreName = name;
+        //I can access mStoreName because it lives on a more global scope. It is an attribute of the Main class
     }
 
 
@@ -81,6 +87,7 @@ public class Main {
      */
     public static String greetCustomer(String customerName) {
         // do some concatenation and return the result
+        return "Hi " + customerName + ", welcome to " + mStoreName+".";
     }
 
 
@@ -94,6 +101,7 @@ public class Main {
      */
     public static double getSalePrice(double fullPrice, double discount) {
         // do some math and return the sale price
+        return rounder(fullPrice*(1-discount));
     }
 
 
@@ -107,9 +115,9 @@ public class Main {
      */
     public static double getClearancePrice(double fullPrice, double discount) {
         // A) calculate the sale price, then B) take off the extra 50% to get the clearance price
-
         // hint - consider the DRY principle: Don't Repeat Yourself!
         // can you use the getSalePrice() method here to avoid repeating logic you've already written?
+        return rounder(getSalePrice(fullPrice, discount)/2);
     }
 
 
@@ -131,6 +139,14 @@ public class Main {
     public static double getBulkDiscount(int quantityPurchased) {
         // there are multiple ways to do this - we discussed a situation where the remainder from
         // division is truncated (removed). Can you use that to help you here?
+        int result = quantityPurchased/5;
+        switch (result){
+            case 0: return 0;
+            case 1: return 0.05;
+            case 2: return 0.1;
+            case 3: return 0.15;
+            default: return 0;
+        }
     }
 
 
@@ -144,5 +160,8 @@ public class Main {
         // In order to print each item you'll need to loop through all the items.
         // We haven't covered loops yet, so challenge yourself to figure it out by googling.
         // If you don't get it, no worries! We'll cover loops tomorrow.
+        for(String string : items){
+            System.out.println(string);
+        }
     }
 }
