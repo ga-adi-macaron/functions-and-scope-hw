@@ -11,10 +11,10 @@ public class Main {
         // Pretend you're running an online store. Complete the "helper" methods below and call them here in main().
 
         // 1) Complete the setStoreName() method below and use it to save your store's name
-        setStoreName("put your store's name here, e.g. Bob's Discount Warehouse");
+        setStoreName("Serkan's Palace");
 
         // 2) Complete the greetCustomer() method below
-        String greeting = greetCustomer("put a customer name here");
+        String greeting = greetCustomer("Melike");
         System.out.println(greeting);
 
 
@@ -65,8 +65,10 @@ public class Main {
      * @param name, as String
      */
     public static void setStoreName(String name) {
-        // update the value of mStoreName, then explain in a comment why you can access that variable
-        // from within the scope of this method, since mStoreName is NOT local to this method.
+        mStoreName = name;
+
+        //SERKAN: mStoreName is defined before all other methods and is not in {} so does not belong to a specific
+        //(cont'd) method. Hence it can be used by all the methods.
     }
 
 
@@ -80,7 +82,8 @@ public class Main {
      * @return the completed String
      */
     public static String greetCustomer(String customerName) {
-        // do some concatenation and return the result
+        String greetings = "Hi " + customerName + ", welcome to " + mStoreName;
+        return greetings;
     }
 
 
@@ -93,7 +96,12 @@ public class Main {
      * @return a double representing the sale price
      */
     public static double getSalePrice(double fullPrice, double discount) {
-        // do some math and return the sale price
+        double discountAmount = fullPrice * discount;
+        double salePrice = fullPrice - discountAmount;
+        double rounding1 = salePrice * 100;
+        int rounding2 = (int) rounding1;
+        double rounding3 = (double) rounding2 / 100;
+        return rounding3;
     }
 
 
@@ -106,10 +114,10 @@ public class Main {
      * @return a double representing the clearance price
      */
     public static double getClearancePrice(double fullPrice, double discount) {
-        // A) calculate the sale price, then B) take off the extra 50% to get the clearance price
-
-        // hint - consider the DRY principle: Don't Repeat Yourself!
-        // can you use the getSalePrice() method here to avoid repeating logic you've already written?
+        double discountAmount = fullPrice * discount;
+        double salePrice = fullPrice - discountAmount;
+        double clearancePrice = salePrice * 0.5;
+        return clearancePrice;
     }
 
 
@@ -129,6 +137,8 @@ public class Main {
      * @return the discount level, a double between 0.0 and 1.0
      */
     public static double getBulkDiscount(int quantityPurchased) {
+        int coefficient = quantityPurchased / 5;
+        return coefficient * 0.05;
         // there are multiple ways to do this - we discussed a situation where the remainder from
         // division is truncated (removed). Can you use that to help you here?
     }
