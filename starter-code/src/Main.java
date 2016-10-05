@@ -11,10 +11,10 @@ public class Main {
         // Pretend you're running an online store. Complete the "helper" methods below and call them here in main().
 
         // 1) Complete the setStoreName() method below and use it to save your store's name
-        setStoreName("put your store's name here, e.g. Bob's Discount Warehouse");
+        setStoreName("Johnson's Used car lot and Sushi duplex");
 
         // 2) Complete the greetCustomer() method below
-        String greeting = greetCustomer("put a customer name here");
+        String greeting = greetCustomer("Jim");
         System.out.println(greeting);
 
 
@@ -64,9 +64,11 @@ public class Main {
      *
      * @param name, as String
      */
+
     public static void setStoreName(String name) {
-        // update the value of mStoreName, then explain in a comment why you can access that variable
-        // from within the scope of this method, since mStoreName is NOT local to this method.
+        mStoreName = name;
+
+        //The variable was declared within the scope of the parent class of this method, and it was assigned a public scope.
     }
 
 
@@ -80,6 +82,8 @@ public class Main {
      * @return the completed String
      */
     public static String greetCustomer(String customerName) {
+        String message = ("Hi "+ customerName + ", welcome to " + mStoreName);
+        return message;
         // do some concatenation and return the result
     }
 
@@ -93,7 +97,8 @@ public class Main {
      * @return a double representing the sale price
      */
     public static double getSalePrice(double fullPrice, double discount) {
-        // do some math and return the sale price
+        double salePrice = fullPrice - (fullPrice*discount);
+        return dropExtraDecimals(salePrice);
     }
 
 
@@ -106,7 +111,10 @@ public class Main {
      * @return a double representing the clearance price
      */
     public static double getClearancePrice(double fullPrice, double discount) {
-        // A) calculate the sale price, then B) take off the extra 50% to get the clearance price
+        double salePrice = getSalePrice(fullPrice, discount);
+        double clearancePrice = salePrice* (.50);
+        return dropExtraDecimals(clearancePrice);
+
 
         // hint - consider the DRY principle: Don't Repeat Yourself!
         // can you use the getSalePrice() method here to avoid repeating logic you've already written?
@@ -129,11 +137,18 @@ public class Main {
      * @return the discount level, a double between 0.0 and 1.0
      */
     public static double getBulkDiscount(int quantityPurchased) {
+        int levelOfDiscount = quantityPurchased/5;
+        double actualDiscount =  levelOfDiscount* 0.05;
+        return dropExtraDecimals(actualDiscount);
+
         // there are multiple ways to do this - we discussed a situation where the remainder from
         // division is truncated (removed). Can you use that to help you here?
     }
 
-
+    public static double dropExtraDecimals(double inputVar){
+        int placeHolder = (int)(inputVar *100);
+        return (double)placeHolder/100;
+    }
     /**
      * This method should print each item on the screen, all on one line. The number of items can vary.
      * They items can be separated by spaces, commas, slashes, or whatever delimiter you like.
@@ -141,6 +156,10 @@ public class Main {
      * @param items, a sequence of Strings
      */
     public static void printInventory(String... items) {
+        System.out.println("");//Created a new line for better readability.
+        for (String item:items){
+            System.out.println(item);
+        }
         // In order to print each item you'll need to loop through all the items.
         // We haven't covered loops yet, so challenge yourself to figure it out by googling.
         // If you don't get it, no worries! We'll cover loops tomorrow.
