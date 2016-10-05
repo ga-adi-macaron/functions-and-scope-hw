@@ -11,10 +11,10 @@ public class Main {
         // Pretend you're running an online store. Complete the "helper" methods below and call them here in main().
 
         // 1) Complete the setStoreName() method below and use it to save your store's name
-        setStoreName("put your store's name here, e.g. Bob's Discount Warehouse");
+        setStoreName("Goat Portraits");
 
         // 2) Complete the greetCustomer() method below
-        String greeting = greetCustomer("put a customer name here");
+        String greeting = greetCustomer("Jeff Kendalson");
         System.out.println(greeting);
 
 
@@ -47,15 +47,15 @@ public class Main {
         // *** BONUS ***
         // 6) See if you can modify the methods that return a double so that the returned value is rounded
         //    to 2 decimal places (e.g. $59.99 rather than $59.992499999)
-        //
+
         // hint - look for a rounding method in the Math class. You may need to combine that with some
         // additional arithmetic. There are other approaches too - feel free to google it.
 
 
         // ***BONUS***
         // 7) Complete the printInventoryList() method below and call it with different numbers of inputs
-        printInventory("baseball cap", "cowboy hat", "fedora");
-        printInventory("Nexus 5X", "Samsung S7", "iPhone 6S", "Nexus 6P", "One Plus 3", "Moto X");
+        //printInventory("baseball cap", "cowboy hat", "fedora");
+        //printInventory("Nexus 5X", "Samsung S7", "iPhone 6S", "Nexus 6P", "One Plus 3", "Moto X");
     }
 
 
@@ -65,6 +65,11 @@ public class Main {
      * @param name, as String
      */
     public static void setStoreName(String name) {
+
+        String mStoreName = name;
+        // mStoreName is declared outside the main scope, therefore it's accessible to all the local scopes below it
+
+
         // update the value of mStoreName, then explain in a comment why you can access that variable
         // from within the scope of this method, since mStoreName is NOT local to this method.
     }
@@ -81,6 +86,8 @@ public class Main {
      */
     public static String greetCustomer(String customerName) {
         // do some concatenation and return the result
+
+        return customerName + "... You've arrived at " + mStoreName + "...";
     }
 
 
@@ -93,7 +100,10 @@ public class Main {
      * @return a double representing the sale price
      */
     public static double getSalePrice(double fullPrice, double discount) {
+        double sale1 = (1-discount) * fullPrice;
+        return sale1;
         // do some math and return the sale price
+
     }
 
 
@@ -107,7 +117,7 @@ public class Main {
      */
     public static double getClearancePrice(double fullPrice, double discount) {
         // A) calculate the sale price, then B) take off the extra 50% to get the clearance price
-
+            return getSalePrice(fullPrice, discount) / 2;
         // hint - consider the DRY principle: Don't Repeat Yourself!
         // can you use the getSalePrice() method here to avoid repeating logic you've already written?
     }
@@ -129,6 +139,22 @@ public class Main {
      * @return the discount level, a double between 0.0 and 1.0
      */
     public static double getBulkDiscount(int quantityPurchased) {
+
+        if(quantityPurchased < 5){
+            return 0.0;
+        } else if(4 < quantityPurchased < 10){
+            return 0.05;
+        } else if(9 < quantityPurchased < 15){
+            return 0.10;
+        } else if(14 < quantityPurchased < 20){
+            return 0.15;
+        } else if(19 < quantityPurchased < 25){
+            return 0.20;
+        } else if(24 < quantityPurchased < 30){
+            return 0.25;
+        } else;
+            System.out.println("Wow, you bought a lot of the same thing. Weird.");
+        }
         // there are multiple ways to do this - we discussed a situation where the remainder from
         // division is truncated (removed). Can you use that to help you here?
     }
@@ -140,9 +166,14 @@ public class Main {
      *
      * @param items, a sequence of Strings
      */
-    public static void printInventory(String... items) {
+   // public static void printInventory(String... items) {
         // In order to print each item you'll need to loop through all the items.
         // We haven't covered loops yet, so challenge yourself to figure it out by googling.
         // If you don't get it, no worries! We'll cover loops tomorrow.
-    }
-}
+
+      //  for (String items){
+      //      System.out.println();
+   // }
+//}
+
+// cannot figure out this loop at the moment :(
