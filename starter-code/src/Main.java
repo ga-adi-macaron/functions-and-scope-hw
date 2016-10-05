@@ -11,10 +11,10 @@ public class Main {
         // Pretend you're running an online store. Complete the "helper" methods below and call them here in main().
 
         // 1) Complete the setStoreName() method below and use it to save your store's name
-        setStoreName("put your store's name here, e.g. Bob's Discount Warehouse");
+        setStoreName("Wellsco");
 
         // 2) Complete the greetCustomer() method below
-        String greeting = greetCustomer("put a customer name here");
+        String greeting = greetCustomer("Jeff");
         System.out.println(greeting);
 
 
@@ -67,6 +67,8 @@ public class Main {
     public static void setStoreName(String name) {
         // update the value of mStoreName, then explain in a comment why you can access that variable
         // from within the scope of this method, since mStoreName is NOT local to this method.
+        mStoreName = name;
+        //mStoreName is public variable outside of the methods
     }
 
 
@@ -80,7 +82,8 @@ public class Main {
      * @return the completed String
      */
     public static String greetCustomer(String customerName) {
-        // do some concatenation and return the result
+        String greeting = ("Hello " + customerName + " welcome to Wellsco");
+        return greeting;
     }
 
 
@@ -93,7 +96,8 @@ public class Main {
      * @return a double representing the sale price
      */
     public static double getSalePrice(double fullPrice, double discount) {
-        // do some math and return the sale price
+        double salePrice = fullPrice * (1+discount);
+        return salePrice;
     }
 
 
@@ -110,6 +114,8 @@ public class Main {
 
         // hint - consider the DRY principle: Don't Repeat Yourself!
         // can you use the getSalePrice() method here to avoid repeating logic you've already written?
+
+        return (getSalePrice(fullPrice, discount)/2);
     }
 
 
@@ -129,8 +135,8 @@ public class Main {
      * @return the discount level, a double between 0.0 and 1.0
      */
     public static double getBulkDiscount(int quantityPurchased) {
-        // there are multiple ways to do this - we discussed a situation where the remainder from
-        // division is truncated (removed). Can you use that to help you here?
+        double discount = ((int)quantityPurchased/5)*.05;
+        return discount;
     }
 
 
@@ -144,5 +150,7 @@ public class Main {
         // In order to print each item you'll need to loop through all the items.
         // We haven't covered loops yet, so challenge yourself to figure it out by googling.
         // If you don't get it, no worries! We'll cover loops tomorrow.
+        for (int x=0; x < items.length; x++)
+            System.out.println(items[x]);
     }
 }
