@@ -1,3 +1,6 @@
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 /**
  * Functions and Scope Homework
  * Created by charlie on 6/21/16.
@@ -5,16 +8,17 @@
 public class Main {
 
     public static String mStoreName;
+    public static NumberFormat mFormat = new DecimalFormat("#0.00");
 
     public static void main(String[] args) {
 
         // Pretend you're running an online store. Complete the "helper" methods below and call them here in main().
 
         // 1) Complete the setStoreName() method below and use it to save your store's name
-        setStoreName("put your store's name here, e.g. Bob's Discount Warehouse");
+        setStoreName("Joe's Discount Electronic Store");
 
         // 2) Complete the greetCustomer() method below
-        String greeting = greetCustomer("put a customer name here");
+        String greeting = greetCustomer("Erika");
         System.out.println(greeting);
 
 
@@ -22,15 +26,15 @@ public class Main {
         Double originalPrice = 79.99;
         Double discount = 0.25; // a 25% discount
         Double salePrice = getSalePrice(originalPrice, discount);
-        System.out.println("25% off $79.99 is $" + salePrice);
+        System.out.println("25% off $79.99 is $" + mFormat.format(salePrice));
 
         // you can also nest a call to getSalePrice() inside a call to println()
-        System.out.println("15% off $24.95 is $" + getSalePrice(24.95, 0.15));
+        System.out.println("15% off $24.95 is $" + mFormat.format(getSalePrice(24.95, 0.15)));
 
 
         // 4) Complete the getClearancePrice() method below and make sure correct value is printed here
         Double clearancePrice = getClearancePrice(originalPrice, discount);
-        System.out.println("take an extra 50% off after the 25% discount from $79.99: $" + clearancePrice);
+        System.out.println("take an extra 50% off after the 25% discount from $79.99: $" + mFormat.format(clearancePrice));
 
 
         // 5) Complete the getBulkDiscount() method below. Apply it to get a sale price.
@@ -38,10 +42,10 @@ public class Main {
         double bulkDiscount = getBulkDiscount(numberOfItems);
         double itemPrice = 19.99;
         double salePriceForEachItem = getSalePrice(itemPrice, bulkDiscount);
-        System.out.println("price after bulk discount: $" + salePriceForEachItem);
+        System.out.println("price after bulk discount: $" + mFormat.format(salePriceForEachItem));
 
         // you can also nest all these method calls together:
-        System.out.println("bulk discount price: $" + getSalePrice(100.0, getBulkDiscount(28)));
+        System.out.println("bulk discount price: $" + mFormat.format(getSalePrice(100.0, getBulkDiscount(28))));
 
 
         // *** BONUS ***
@@ -67,6 +71,11 @@ public class Main {
     public static void setStoreName(String name) {
         // update the value of mStoreName, then explain in a comment why you can access that variable
         // from within the scope of this method, since mStoreName is NOT local to this method.
+        mStoreName = name;
+        /*
+        * The reason variable mStoreName is accessible is because it is declared outside of main function which makes
+        * it a class variable. It can be access anywhere within this class.
+        */
     }
 
 
@@ -81,6 +90,7 @@ public class Main {
      */
     public static String greetCustomer(String customerName) {
         // do some concatenation and return the result
+        return ("Hi "+ customerName + ", welcome to "+ mStoreName);
     }
 
 
@@ -94,6 +104,7 @@ public class Main {
      */
     public static double getSalePrice(double fullPrice, double discount) {
         // do some math and return the sale price
+        return fullPrice*(1-discount);
     }
 
 
@@ -110,6 +121,7 @@ public class Main {
 
         // hint - consider the DRY principle: Don't Repeat Yourself!
         // can you use the getSalePrice() method here to avoid repeating logic you've already written?
+        return getSalePrice(fullPrice,1-discount)*0.5;
     }
 
 
@@ -131,6 +143,7 @@ public class Main {
     public static double getBulkDiscount(int quantityPurchased) {
         // there are multiple ways to do this - we discussed a situation where the remainder from
         // division is truncated (removed). Can you use that to help you here?
+        return (quantityPurchased%5)*0.05;
     }
 
 
@@ -144,5 +157,8 @@ public class Main {
         // In order to print each item you'll need to loop through all the items.
         // We haven't covered loops yet, so challenge yourself to figure it out by googling.
         // If you don't get it, no worries! We'll cover loops tomorrow.
+        for(String item:items){
+            System.out.print(item+" ");
+        }
     }
 }
