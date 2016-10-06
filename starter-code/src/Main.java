@@ -11,10 +11,10 @@ public class Main {
         // Pretend you're running an online store. Complete the "helper" methods below and call them here in main().
 
         // 1) Complete the setStoreName() method below and use it to save your store's name
-        setStoreName("put your store's name here, e.g. Bob's Discount Warehouse");
+        setStoreName("Mr. Robot");
 
         // 2) Complete the greetCustomer() method below
-        String greeting = greetCustomer("put a customer name here");
+        String greeting = greetCustomer("Tyrell");
         System.out.println(greeting);
 
 
@@ -67,6 +67,7 @@ public class Main {
     public static void setStoreName(String name) {
         // update the value of mStoreName, then explain in a comment why you can access that variable
         // from within the scope of this method, since mStoreName is NOT local to this method.
+        name = setStoreName; //the access modifier is public therefore it's accessible within the scope
     }
 
 
@@ -81,6 +82,7 @@ public class Main {
      */
     public static String greetCustomer(String customerName) {
         // do some concatenation and return the result
+        return "Hello " + customerName + ", welcome to " + setStoreName;
     }
 
 
@@ -94,6 +96,8 @@ public class Main {
      */
     public static double getSalePrice(double fullPrice, double discount) {
         // do some math and return the sale price
+        double total = fullPrice * discount;
+        return total;
     }
 
 
@@ -107,6 +111,9 @@ public class Main {
      */
     public static double getClearancePrice(double fullPrice, double discount) {
         // A) calculate the sale price, then B) take off the extra 50% to get the clearance price
+        fullPrice = getSalePrice(orignalPrice, discount);
+        double total = fullPrice * 0.50;
+        return total;
 
         // hint - consider the DRY principle: Don't Repeat Yourself!
         // can you use the getSalePrice() method here to avoid repeating logic you've already written?
