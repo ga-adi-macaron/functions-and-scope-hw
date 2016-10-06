@@ -11,29 +11,35 @@ public class Main {
         // Pretend you're running an online store. Complete the "helper" methods below and call them here in main().
 
         // 1) Complete the setStoreName() method below and use it to save your store's name
-        setStoreName("put your store's name here, e.g. Bob's Discount Warehouse");
+
+        setStoreName("Jay's Jovial Java");
 
         // 2) Complete the greetCustomer() method below
-        String greeting = greetCustomer("put a customer name here");
+
+        String greeting = greetCustomer("Andrew");
         System.out.println(greeting);
 
 
         // 3) Complete the getSalePrice() method below and make sure the correct value is printed here
+
         Double originalPrice = 79.99;
         Double discount = 0.25; // a 25% discount
         Double salePrice = getSalePrice(originalPrice, discount);
         System.out.println("25% off $79.99 is $" + salePrice);
 
         // you can also nest a call to getSalePrice() inside a call to println()
+
         System.out.println("15% off $24.95 is $" + getSalePrice(24.95, 0.15));
 
 
         // 4) Complete the getClearancePrice() method below and make sure correct value is printed here
+
         Double clearancePrice = getClearancePrice(originalPrice, discount);
         System.out.println("take an extra 50% off after the 25% discount from $79.99: $" + clearancePrice);
 
 
         // 5) Complete the getBulkDiscount() method below. Apply it to get a sale price.
+
         int numberOfItems = 12;
         double bulkDiscount = getBulkDiscount(numberOfItems);
         double itemPrice = 19.99;
@@ -41,6 +47,7 @@ public class Main {
         System.out.println("price after bulk discount: $" + salePriceForEachItem);
 
         // you can also nest all these method calls together:
+
         System.out.println("bulk discount price: $" + getSalePrice(100.0, getBulkDiscount(28)));
 
 
@@ -81,6 +88,7 @@ public class Main {
      */
     public static String greetCustomer(String customerName) {
         // do some concatenation and return the result
+        return customerName;
     }
 
 
@@ -94,6 +102,12 @@ public class Main {
      */
     public static double getSalePrice(double fullPrice, double discount) {
         // do some math and return the sale price
+
+        fullPrice = 100.0;
+        discount = 0.2;
+        double salePrice = getSalePrice(fullPrice, discount);
+        System.out.println("20% off of 100.00 $" + salePrice);
+        return salePrice;
     }
 
 
@@ -110,6 +124,16 @@ public class Main {
 
         // hint - consider the DRY principle: Don't Repeat Yourself!
         // can you use the getSalePrice() method here to avoid repeating logic you've already written?
+
+        fullPrice = 100.0;
+        discount = 0.2;
+        double totalDiscount = 0.5;
+        double salePrice = getClearancePrice(fullPrice, discount);
+        double finalPrice = getClearancePrice(salePrice, totalDiscount);
+        System.out.println("50% off sale price $" + finalPrice);
+
+        return finalPrice;
+
     }
 
 
@@ -144,5 +168,7 @@ public class Main {
         // In order to print each item you'll need to loop through all the items.
         // We haven't covered loops yet, so challenge yourself to figure it out by googling.
         // If you don't get it, no worries! We'll cover loops tomorrow.
+
+        System.out.println();
     }
 }
